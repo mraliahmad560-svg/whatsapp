@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magic 3D Picture Gallery</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Login/Register Modal -->
+    <div id="authModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-hat-wizard"></i> Welcome to Magic Gallery</h2>
+                <span class="close-btn">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="form-container">
+                    <!-- Login Form -->
+                    <form id="loginForm" class="auth-form active">
+                        <h3>Login to Enter</h3>
+                        <div class="input-group">
+                            <i class="fas fa-user"></i>
+                            <input type="text" id="loginUsername" placeholder="Username" required>
+                        </div>
+                        <div class="input-group">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="loginPassword" placeholder="Password" required>
+                        </div>
+                        <button type="submit" class="magic-btn">
+                            <i class="fas fa-magic"></i> Enter the Gallery
+                        </button>
+                        <p class="switch-form">Don't have an account? <a href="#" id="showRegister">Register here</a></p>
+                        <div class="demo-credentials">
+                            <p><strong>Admin Demo:</strong> admin / admin123</p>
+                            <p><strong>User Demo:</strong> user / user123</p>
+                        </div>
+                    </form>
+                    
+                    <!-- Register Form -->
+                    <form id="registerForm" class="auth-form">
+                        <h3>Create Account</h3>
+                        <div class="input-group">
+                            <i class="fas fa-user"></i>
+                            <input type="text" id="registerUsername" placeholder="Username" required>
+                        </div>
+                        <div class="input-group">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="registerEmail" placeholder="Email" required>
+                        </div>
+                        <div class="input-group">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="registerPassword" placeholder="Password" required>
+                        </div>
+                        <div class="input-group">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="registerConfirmPassword" placeholder="Confirm Password" required>
+                        </div>
+                        <button type="submit" class="magic-btn">
+                            <i class="fas fa-wand-sparkles"></i> Create Account
+                        </button>
+                        <p class="switch-form">Already have an account? <a href="#" id="showLogin">Login here</a></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container" id="mainContainer">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-hat-wizard"></i>
+                <h1>Magic 3D Gallery</h1>
+            </div>
+            <nav class="nav">
+                <div class="user-info">
+                    <i class="fas fa-user-circle"></i>
+                    <span id="currentUser">Guest</span>
+                    <div class="user-role-badge" id="userRoleBadge">Guest</div>
+                </div>
+                <button id="logoutBtn" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </nav>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="sidebar-section">
+                    <h3><i class="fas fa-crystal-ball"></i> Gallery Controls</h3>
+                    <div class="control-group">
+                        <label for="rotationSpeed">Rotation Speed</label>
+                        <input type="range" id="rotationSpeed" min="0" max="10" value="3">
+                    </div>
+                    <div class="control-group">
+                        <label for="galleryZoom">Gallery Zoom</label>
+                        <input type="range" id="galleryZoom" min="50" max="200" value="100">
+                    </div>
+                    <div class="control-group">
+                        <label for="pictureCount">Picture Count</label>
+                        <input type="range" id="pictureCount" min="3" max="12" value="6">
+                    </div>
+                    <button id="resetGalleryBtn" class="control-btn">
+                        <i class="fas fa-redo"></i> Reset Gallery
+                    </button>
+                </div>
+                
+                <!-- Hidden Admin Upload Section - Only shown for admin -->
+                <div class="sidebar-section admin-section" id="adminUploadSection">
+                    <h3><i class="fas fa-shield-alt"></i> Admin Controls</h3>
+                    <div class="upload-area" id="uploadArea">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Drag & Drop or Click to Upload</p>
+                        <input type="file" id="fileInput" accept="image/*" multiple>
+                        <button class="upload-btn" id="uploadBtn">
+                            <i class="fas fa-upload"></i> Upload Pictures
+                        </button>
+                    </div>
+                    <div class="upload-progress" id="uploadProgress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                        <p class="progress-text" id="progressText">Ready to upload</p>
+                    </div>
+                    <div class="admin-actions">
+                        <button class="control-btn admin-btn" id="deleteAllBtn">
+                            <i class="fas fa-trash"></i> Remove All Pictures
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="sidebar-section">
+                    <h3><i class="fas fa-info-circle"></i> Instructions</h3>
+                    <ul class="instructions">
+                        <li>Drag to rotate the 3D gallery</li>
+                        <li>Scroll to zoom in/out</li>
+                        <li>Click on a picture to view it larger</li>
+                        <li>Admins can upload new pictures</li>
+                        <li>Use controls to adjust gallery behavior</li>
+                    </ul>
+                </div>
+            </aside>
+
+            <!-- Gallery Area -->
+            <section class="gallery-area">
+                <div class="gallery-header">
+                    <h2><i class="fas fa-images"></i> 3D Picture Gallery</h2>
+                    <div class="gallery-stats">
+                        <span id="pictureCountDisplay">6 pictures</span>
+                        <span id="galleryStatus">Active</span>
+                    </div>
+                </div>
+                
+                <!-- 3D Gallery Container -->
+                <div class="gallery-container">
+                    <div class="gallery-3d" id="gallery3d">
+                        <!-- Pictures will be dynamically added here -->
+                    </div>
+                    <div class="gallery-controls">
+                        <button class="gallery-btn" id="rotateLeftBtn">
+                            <i class="fas fa-undo"></i> Rotate Left
+                        </button>
+                        <button class="gallery-btn" id="rotateRightBtn">
+                            <i class="fas fa-redo"></i> Rotate Right
+                        </button>
+                        <button class="gallery-btn" id="autoRotateBtn">
+                            <i class="fas fa-sync-alt"></i> Auto Rotate
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Picture Preview Modal -->
+                <div id="previewModal" class="modal preview-modal">
+                    <div class="modal-content preview-content">
+                        <span class="close-preview">&times;</span>
+                        <div class="preview-image-container">
+                            <img id="previewImage" src="" alt="Preview">
+                        </div>
+                        <div class="preview-info">
+                            <h3 id="previewTitle">Picture Preview</h3>
+                            <p id="previewDetails">Uploaded by: <span id="uploaderName">Unknown</span></p>
+                            <p id="previewDate">Date: Unknown</p>
+                            <div class="preview-actions">
+                                <button class="preview-btn" id="downloadBtn">
+                                    <i class="fas fa-download"></i> Download
+                                </button>
+                                <button class="preview-btn admin-btn" id="deletePictureBtn">
+                                    <i class="fas fa-trash"></i> Delete Picture
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Magic 3D Gallery &copy; 2023 | Experience the magic of 3D visualization</p>
+            <div class="footer-links">
+                <a href="#"><i class="fab fa-github"></i> GitHub</a>
+                <a href="#"><i class="fas fa-question-circle"></i> Help</a>
+                <a href="#"><i class="fas fa-cog"></i> Settings</a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

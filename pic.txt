@@ -1,0 +1,87 @@
+Magic 3D Picture Gallery
+=========================
+
+A magical 3D interactive website for uploading and viewing pictures with admin authentication.
+
+Features:
+---------
+1. Magical 3D interface with interactive gallery
+2. User authentication (login/register system)
+3. Admin-only picture upload functionality
+4. Interactive 3D controls (rotation, zoom, picture count)
+5. Drag and drop or click to upload pictures
+6. Picture preview with details
+7. Responsive design for all screen sizes
+
+File Structure:
+---------------
+- index.html (Main HTML structure)
+- style.css (All CSS styles)
+- script.js (All JavaScript functionality)
+- README.txt (This file)
+
+Setup Instructions:
+-------------------
+1. Open index.html in a web browser
+2. No server required - runs completely in the browser
+
+Demo Credentials:
+-----------------
+Admin Account:
+  Username: admin
+  Password: admin123
+  
+User Account:
+  Username: user
+  Password: user123
+
+You can also register new accounts which will be saved in browser local storage.
+
+Admin Features:
+---------------
+1. Upload pictures (drag & drop or click to upload)
+2. Delete any picture (except demo pictures)
+3. Delete all user-uploaded pictures
+
+User Features:
+--------------
+1. View the 3D gallery
+2. Interact with gallery (rotate, zoom)
+3. View picture details
+4. Download pictures
+
+Gallery Controls:
+-----------------
+1. Drag the gallery to rotate manually
+2. Use mouse wheel to zoom in/out
+3. Use sidebar controls to adjust:
+   - Rotation speed
+   - Gallery zoom
+   - Number of pictures displayed
+4. Buttons for:
+   - Rotate left/right
+   - Auto rotate
+   - Reset gallery
+
+Technical Details:
+------------------
+- Pure HTML, CSS, and JavaScript (no external libraries)
+- Uses CSS 3D transforms for the gallery effect
+- Local storage for user accounts and session
+- Responsive design with media queries
+- Interactive animations and transitions
+
+Browser Compatibility:
+----------------------
+Works best in modern browsers with support for:
+- CSS 3D Transforms
+- Flexbox
+- ES6 JavaScript
+
+Notes:
+------
+- Uploaded pictures are stored locally (as object URLs)
+- User accounts are stored in browser local storage
+- Demo pictures are loaded from Unsplash
+
+Enjoy the magical 3D gallery experience!
